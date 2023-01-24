@@ -11,6 +11,7 @@ CREATE TABLE users (
 CREATE TABLE posts (
     id_posts INTEGER PRIMARY KEY AUTOINCREMENT,
     created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    nome_receita TEXT NOT NULL,
     tempo_preparo INTEGER NOT NULL,
     porcoes INTEGER NOT NULL,
     ingredientes TEXT NOT NULL,
