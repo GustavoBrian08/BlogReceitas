@@ -1,5 +1,4 @@
 <script setup lang="ts">
-  
   import * as validate from '@/assets/vendor/php-email-form/validate.js'
   import * as mod from '@/assets/js/main.js';
 

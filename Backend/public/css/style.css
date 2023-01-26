@@ -1,0 +1,39 @@
+input[type="file"] {
+    display: none;
+}
+
+.img{
+   margin-top: 20px;
+   width: 400px;
+   aspect-ratio: 16/9;
+   background: #ddd;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   color: #aaa;
+   border: 2px dashed currentColor;
+   cursor: pointer;
+   font-family: sans-serif;
+   transition: color 300ms ease-in-out, background 300ms ease-in-out;
+
+}
+
+.img:hover {
+    color: #777;
+    background: #ccc;
+}
+
+.img:active {
+    border-color: blue;
+    color: #aaa;
+    background: #ddd;
+}
+
+.img:focus {
+    box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+}
+
+.arquivo__img {
+    
+    max-width: 100%;
+}
