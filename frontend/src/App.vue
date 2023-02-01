@@ -1,7 +1,11 @@
 <template>
   <div class="usuarios">
     <Navbar />
+
     <Carrossel />
+    <div>
+      <span v-html="postagem[1].conteudo"></span>
+    </div>
     <div class="container d-flex flex-column justify-content-center align-items-center">
       <h1 class="titulo my-4">Envie sua Receita</h1>
       <CriarPosts />
@@ -45,6 +49,14 @@ interface Usuario {
   nome: string
   email: string
 }
+interface Postagem {
+    id: string
+    slug: string
+    conteudo: string
+    data: string
+    categoria:string
+    id_users: Number
+}
 
 export default defineComponent({
   components: {
@@ -57,6 +69,7 @@ export default defineComponent({
   data() {
     return {
       usuarios: [] as Usuario[],
+      postagem: [] as Postagem[],
       form: {
         nome: '',
         email: ''
@@ -65,12 +78,16 @@ export default defineComponent({
   },
   created() {
     this.buscarUsuarios()
+    this.buscarPostagens()
   },
   methods: {
     async buscarUsuarios() {
       const { data } = await axios.get('/usuarios')
       this.usuarios = data
-    },
+    },async buscarPostagens(){
+        const { data } = await axios.get('/postagens')  
+        this.postagem = data
+      },
     async criarUsuario() {
       try {
         const { data } = await axios.post('/usuarios', this.form)

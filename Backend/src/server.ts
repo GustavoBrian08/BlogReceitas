@@ -7,6 +7,16 @@ interface Usuario {
     nome: string
     email: string
 }
+interface Postagem {
+    id: string
+    slug: string
+    conteudo: string
+    data: string
+    categoria:string
+    id_users: Number
+}
+
+let postagens:any[] = []
 
 const usuarios: Usuario[] = []
 

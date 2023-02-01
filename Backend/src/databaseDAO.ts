@@ -81,10 +81,10 @@ export class PostagemDAO {
         cliente.release();
     }
 
-    public static async createPostagem(slug:any,conteudo:any, id_users:number, data:any ){
+    public static async createPostagem(slug:any,conteudo:any, data:any, categoria:any, id_users:number ){
         const cliente = await Pool.connect(); 
-        const sql = "INSERT INTO postagens (slug, conteudo, id_users, data) VALUES ($1, $2, $3, $4)";
-        const valores = [slug, conteudo, id_users, data]
+        const sql = "INSERT INTO postagens (slug, conteudo,data, categoria, id_users) VALUES ($1, $2, $3, $4, $5)";
+        const valores = [slug, conteudo,data, categoria, id_users]
         console.log(await cliente.query(sql, valores));
         cliente.release();
     }

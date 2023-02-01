@@ -9,10 +9,12 @@ interface Usuario {
 }
 
 interface Postagem {
+    id: string
     slug: string
     conteudo: string
-    id_users: Number
     data: string
+    categoria:string
+    id_users: Number
 }
 
 let postagens:any[] = []
@@ -110,13 +112,13 @@ app.get('/postagens', async (request, response) => {
 
 app.post('/postagens', async (request, response) => {
     // pegar os dados do usuário
-    const { slug, conteudo, id_users, data } = request.body
+    const { slug, conteudo,data, categoria, id_users } = request.body
     // salvar na base de dados
     try{
-        await PostagemDAO.createPostagem(slug,conteudo, id_users, data)
+        await PostagemDAO.createPostagem(slug, conteudo,data, categoria, id_users)
         // criar um novo usuário
         const id = await PostagemDAO.getIDUltimoPostagem()
-        const postagem:any = {id, slug,conteudo, id_users, data}
+        const postagem:any = {id, slug, conteudo,data, categoria, id_users}
         postagens.push(postagem)
         console.log(postagem)     
         // retornar o usuário recem criado
