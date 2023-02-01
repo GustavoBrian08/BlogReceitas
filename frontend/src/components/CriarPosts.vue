@@ -1,11 +1,16 @@
 <template>
     <div>
         <form @submit="enviar" class="d-flex flex-column align-items-center justify-content-center">
-            <textarea id="tiny-area"></textarea>
-            <input type="text" value="slug">
-            <input type="text" value="20230201">
+          <h3 class="align-self-start mt-3">Título da Postagem:</h3>
+          <input class="form-control" type="text" placeholder="Insira um título..." aria-label="default input example" v-model="novo_post.titulo">
+          <h3 class="align-self-start mt-3">Link da thumbnail:</h3>
+          <input class="form-control" type="text" placeholder="Insira a url da thumbnail..." aria-label="default input example" v-model="novo_post.slug">
+          <h3 class="align-self-start mt-3">Data:</h3>
+          <input class="form-control" type="text" placeholder="Formato da data: aaammdd" aria-label="default input example" v-model="novo_post.data">
+          <h3 class="align-self-start mt-3">Conteúdo da Postagem:</h3>
+          <textarea id="tiny-area"></textarea>
 
-            <button class="btn btn-success my-3">Enviar</button>
+            <button class="btn btn-success my-3" type="submit">Enviar</button>
         </form>
     </div>
 </template>
@@ -21,9 +26,10 @@ export default {
     data(){
         return {
             novo_post: {
-                slug:'slug',
+                slug:'',
+                titulo: '',
                 conteudo: ``,
-                data: '20230201',
+                data: '',
                 categoria:'bolo',
                 id_users:2
             },

@@ -112,13 +112,13 @@ app.get('/postagens', async (request, response) => {
 
 app.post('/postagens', async (request, response) => {
     // pegar os dados do usuário
-    const { slug, conteudo,data, categoria, id_users } = request.body
+    const { slug, titulo, conteudo,data, categoria, id_users } = request.body
     // salvar na base de dados
     try{
-        await PostagemDAO.createPostagem(slug, conteudo,data, categoria, id_users)
+        await PostagemDAO.createPostagem(slug, titulo, conteudo,data, categoria, id_users)
         // criar um novo usuário
         const id = await PostagemDAO.getIDUltimoPostagem()
-        const postagem:any = {id, slug, conteudo,data, categoria, id_users}
+        const postagem:any = {id, slug, titulo, conteudo,data, categoria, id_users}
         postagens.push(postagem)
         console.log(postagem)     
         // retornar o usuário recem criado
@@ -128,6 +128,7 @@ app.post('/postagens', async (request, response) => {
     }
 
 })
+
 
 
 app.listen('3333', () => {

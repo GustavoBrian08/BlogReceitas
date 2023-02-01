@@ -3,7 +3,7 @@ import * as dotenv from 'dotenv' // see https://github.com/motdotla/dotenv#how-d
 dotenv.config()
 
 export default new Pool({
-    connectionString: 'postgres://ukixiftj:3G1sbFV1dcAWjrJ7VvkCpO9bV4GoBhr_@babar.db.elephantsql.com/ukixiftj'
+    connectionString: 'postgres://iefifuhq:8Q0QFIZWdWvjoXTOOz8mka4a9Qi_6b82@babar.db.elephantsql.com/iefifuhq'
 })
 
 

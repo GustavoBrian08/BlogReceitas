@@ -3,32 +3,31 @@
     <Navbar />
 
     <Carrossel />
-    <div>
-      <span v-html="postagem[1].conteudo"></span>
-    </div>
     <div class="container d-flex flex-column justify-content-center align-items-center">
       <h1 class="titulo my-4">Envie sua Receita</h1>
       <CriarPosts />
       <section>
-        <h5 class="titulo">Criar novo Usuário</h5>
-        <form @submit.prevent="criarUsuario">
-          <input type="text" placeholder="Nome" v-model="form.nome">
-          <input type="text" placeholder="E-mail" v-model="form.email">
-          <button type="submit">Adicionar</button>
-        </form>
-      </section>
-      <section>
-        <h5 class="titulo">Lista de Usuários</h5>
-        <ul>
-          <li v-for="u in usuarios" :key="u.id">
-            <p> {{ u.nome }} </p>
-            <small>{{ u.email }}</small>
-            <a class="excluir" @click="excluirUsuario(u.id)"></a>
-          </li>
-        </ul>
+        <h5 class="titulo my-5 ">Todas as Receitas</h5>
+
+        <div class="card" v-for="p in postagem" :key="p.id" style="width: 18rem;">
+          <img :src="p.slug" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">p.</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+
+        <div @click="">
+          <div v-for="p in postagem" :key="p.id">
+            <p v-html="p.slug"></p>
+            <span v-html="p.conteudo"></span>
+            <a class="excluir" @click="excluirUsuario(p.id)"></a>
+          </div>
+        </div>
       </section>
     </div>
-    <Rodape/>
+    <Rodape />
   </div>
 </template>
 
@@ -50,12 +49,12 @@ interface Usuario {
   email: string
 }
 interface Postagem {
-    id: string
-    slug: string
-    conteudo: string
-    data: string
-    categoria:string
-    id_users: Number
+  id: string
+  slug: string
+  conteudo: string
+  data: string
+  categoria: string
+  id_users: Number
 }
 
 export default defineComponent({
@@ -77,17 +76,17 @@ export default defineComponent({
     }
   },
   created() {
-    this.buscarUsuarios()
+    // this.buscarUsuarios()
     this.buscarPostagens()
   },
   methods: {
     async buscarUsuarios() {
       const { data } = await axios.get('/usuarios')
       this.usuarios = data
-    },async buscarPostagens(){
-        const { data } = await axios.get('/postagens')  
-        this.postagem = data
-      },
+    }, async buscarPostagens() {
+      const { data } = await axios.get('/postagens')
+      this.postagem = data
+    },
     async criarUsuario() {
       try {
         const { data } = await axios.post('/usuarios', this.form)
@@ -115,7 +114,8 @@ export default defineComponent({
         text: msg,
         duration: 3000
       }).showToast();
-    }
+    },
+
   }
 })
 </script>
